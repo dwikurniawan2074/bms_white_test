@@ -19,4 +19,9 @@ class SlaEvaluationReportChecklist extends Model
         'level',
         'status',
     ];
+
+    public function bmBaseAsset()
+    {
+        return $this->belongsTo(BmBaseAsset::class, 'asset_id', 'id');
+    }
 }

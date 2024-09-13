@@ -186,36 +186,36 @@
                                                             <p class="mb-0 fw-normal">{{ $asset->asset_info }}</p>
                                                         </td>
                                                         <td class="border-bottom-0 px-2">
-                                                            <p class="mb-0 fw-normal"></p>
+                                                            <p class="mb-0 fw-normal">-</p>
                                                         </td>
                                                         <td class="border-bottom-0 px-2">
-                                                            <p class="mb-0 fw-normal"></p>
+                                                            <p class="mb-0 fw-normal">-</p>
                                                         </td>
                                                         <td class="border-bottom-0 px-2">
-                                                            <p class="mb-0 fw-normal"></p>
+                                                            <p class="mb-0 fw-normal">-</p>
                                                         </td>
                                                         <td class="border-bottom-0 px-2">
-                                                            <p class="mb-0 fw-normal"></p>
+                                                            <p class="mb-0 fw-normal">-</p>
                                                         </td>
                                                         <td class="border-bottom-0 px-2">
-                                                            <p class="mb-0 fw-normal"></p>
+                                                            <p class="mb-0 fw-normal">-</p>
                                                         </td>
                                                         <td class="border-bottom-0 px-2">
-                                                            <p class="mb-0 fw-normal"></p>
+                                                            <p class="mb-0 fw-normal">-</p>
                                                         </td>
                                                         <td class="border-bottom-0 px-2">
-                                                            <p class="mb-0 fw-normal"></p>
+                                                            <p class="mb-0 fw-normal">-</p>
                                                         </td>
                                                         <td class="border-bottom-0 px-2">
-                                                            <p class="mb-0 fw-normal"></p>
+                                                            <p class="mb-0 fw-normal">-</p>
                                                         </td>
                                                         <td class="border-bottom-0 px-2">
-                                                            <p class="mb-0 fw-normal"></p>
+                                                            <p class="mb-0 fw-normal">-</p>
                                                         </td>
                                                         <td class="border-bottom-0 px-2">
                                                         </td>
                                                         <td class="border-bottom-0 px-2">
-                                                            <h6 class="fw-semibold mb-0 fs-4"></h6>
+                                                            <h6 class="fw-semibold mb-0 fs-4">-</h6>
                                                         </td>
                                                         <td class="border-bottom-0 px-2">
                                                             <div class="d-flex align-items-center gap-2">
@@ -259,16 +259,17 @@
                                                     </th>
                                                 </tr>
                                             </thead>
-                                            <tbody>                                  
+                                            <tbody>  
+                                                @foreach ($slaReportFeed as $index => $feed)                                
                                                 <tr>
                                                     <td class="border-bottom-0 px-2">
-                                                        <h6 class="fw-semibold mb-0">1</h6>
+                                                        <h6 class="fw-semibold mb-0">{{ $index + 1 }}</h6>
                                                     </td>
                                                     <td class="border-bottom-0 px-2">
-                                                        <p class="mb-0 fw-normal">Gedung Kantor Semarang Wahidin</p>
+                                                        <p class="mb-0 fw-normal">{{ $feed->slaAsset->asset_info }}</p>
                                                     </td>
                                                     <td class="border-bottom-0 px-2">
-                                                        <p class="mb-0 fw-normal">Nama 9</p>
+                                                        <p class="mb-0 fw-normal">{{ $feed->evaluated_by }}</p>
                                                     </td>
                                                     <td class="border-bottom-0 px-2">
                                                         <div class="d-flex align-items-center gap-2">
@@ -276,7 +277,7 @@
                                                         </div>
                                                     </td>
                                                     <td class="border-bottom-0 px-2">
-                                                        <h6 class="fw-semibold mb-0 fs-4">100%</h6>
+                                                        <h6 class="fw-semibold mb-0 fs-4">100</h6>
                                                     </td>
                                                     <td class="border-bottom-0 px-2">
                                                         <div class="d-flex align-items-center gap-2">
@@ -284,6 +285,7 @@
                                                         </div>
                                                     </td>
                                                 </tr>
+                                                @endforeach
                                             </tbody>
                                         </table>
                                     </div>
@@ -342,7 +344,35 @@
                                                         <p class="mb-0 fw-normal">Kecil</p>
                                                     </td>
                                                     <td class="border-bottom-0 px-2">
-                                                        <h6 class="fw-semibold mb-0 fs-4">100%</h6>
+                                                        <h6 class="fw-semibold mb-0 fs-4"></h6>
+                                                    </td>
+                                                    <td class="border-bottom-0 px-2">
+                                                        <p class="fw-semibold mb-0">Nama 1</p>
+                                                    </td>
+                                                    <td class="border-bottom-0 px-2">
+                                                        <div class="d-flex align-items-center gap-2">
+                                                            <a href="" class="btn btn-primary fs-2 rounded-3 fw-semibold lh-sm">View</a>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="border-bottom-0 px-2">
+                                                        <h6 class="fw-semibold mb-0">2</h6>
+                                                    </td>
+                                                    <td class="border-bottom-0 px-2">
+                                                        <p class="mb-0 fw-normal">Gedung Pagar Dewa & Panaran</p>
+                                                    </td>
+                                                    <td class="border-bottom-0 px-2">
+                                                        <p class="mb-0 fw-normal">Area Platon Ruang Meeting Pagardewa yang bocor</p>
+                                                    </td>
+                                                    <td class="border-bottom-0 px-2">
+                                                        <p class="mb-0 fw-normal"></p>
+                                                    </td>
+                                                    <td class="border-bottom-0 px-2">
+                                                        <p class="mb-0 fw-normal">Kecil</p>
+                                                    </td>
+                                                    <td class="border-bottom-0 px-2">
+                                                        <h6 class="fw-semibold mb-0 fs-4">0</h6>
                                                     </td>
                                                     <td class="border-bottom-0 px-2">
                                                         <p class="fw-semibold mb-0">Nama 1</p>
@@ -394,35 +424,35 @@
                                                 </tr>
                                             </thead>
                                             <tbody>  
-                                                @foreach ($slaReportFeed as $feed)
-                                                <tr>
-                                                    <td class="border-bottom-0 px-2">
-                                                        <h6 class="fw-semibold mb-0">1</h6>
-                                                    </td>
-                                                    <td class="border-bottom-0 px-2">
-                                                        <p class="mb-0 fw-normal">{{ $feed->evaluated_by }}</p>
-                                                    </td>
-                                                    <td class="border-bottom-0 px-2">
-                                                        <p class="mb-0 fw-normal">Nama</p>
-                                                    </td>
-                                                    <td class="border-bottom-0 px-2">
-                                                        <p class="mb-0 fw-normal"></p>
-                                                    </td>
-                                                    <td class="border-bottom-0 px-2">
-                                                        <p class="mb-0 fw-normal">Kecil</p>
-                                                    </td>
-                                                    <td class="border-bottom-0 px-2">
-                                                        <h6 class="fw-semibold mb-0 fs-4">100%</h6>
-                                                    </td>
-                                                    <td class="border-bottom-0 px-2">
-                                                        <p class="fw-semibold mb-0">Active</p>
-                                                    </td>
-                                                    <td class="border-bottom-0 px-2">
-                                                        <div class="d-flex align-items-center gap-2">
-                                                            <a href="" class="btn btn-primary fs-2 rounded-3 fw-semibold lh-sm">View</a>
-                                                        </div>
-                                                    </td>
-                                                </tr>
+                                                @foreach ($groupedByEvaluator as $evaluatorId => $reports)
+                                                    <tr>
+                                                        <td class="border-bottom-0 px-2">
+                                                            <h6 class="fw-semibold mb-0"></h6>
+                                                        </td>
+                                                        <td class="border-bottom-0 px-2">
+                                                            <p class="mb-0 fw-normal">{{ $evaluatorId }}</p>
+                                                        </td>
+                                                        <td class="border-bottom-0 px-2">
+                                                            <p class="mb-0 fw-normal">Nama</p>
+                                                        </td>
+                                                        <td class="border-bottom-0 px-2">
+                                                            <p class="mb-0 fw-normal"></p> 
+                                                        </td>
+                                                        <td class="border-bottom-0 px-2">
+                                                            <p class="mb-0 fw-normal">-</p>
+                                                        </td>
+                                                        <td class="border-bottom-0 px-2">
+                                                            <h6 class="fw-semibold mb-0 fs-4">-</h6>
+                                                        </td>
+                                                        <td class="border-bottom-0 px-2">
+                                                            <p class="fw-semibold mb-0">Active</p>
+                                                        </td>
+                                                        <td class="border-bottom-0 px-2">
+                                                            <div class="d-flex align-items-center gap-2">
+                                                                <a href="" class="btn btn-primary fs-2 rounded-3 fw-semibold lh-sm">View</a>
+                                                            </div>
+                                                        </td>
+                                                    </tr>
                                                 @endforeach                      
                                             </tbody>
                                         </table>

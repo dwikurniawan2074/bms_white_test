@@ -24,4 +24,9 @@ class BmBaseAsset extends Model
         'created_date',
         'created_by',
     ];
+
+    public function reportChecklists()
+    {
+        return $this->hasMany(SlaEvaluationReportChecklist::class, 'asset_id', 'id');
+    }
 }

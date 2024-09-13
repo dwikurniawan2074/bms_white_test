@@ -34,5 +34,15 @@ class SlaEvaluationReportFeed extends Model
     public function slaReport()
     {
         return $this->belongsTo(SlaEvaluationReport::class, 'period_id', 'period_id');
-    }    
+    } 
+    
+    public function slaAsset()
+    {
+        return $this->belongsTo(BmBaseAsset::class, 'asset_id', 'id');
+    }
+
+    public function hrEmployee()
+    {
+        return $this->belongsTo(HrEmployee::class, 'evaluated_by', 'employee_id');
+    }
 }

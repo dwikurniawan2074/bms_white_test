@@ -23,10 +23,14 @@ class DataController extends Controller
     {
         $slaReports = SlaEvaluationReport::where('period_id', $period_id)->first();
         $bmBaseAsset = BmBaseAsset::all();
-        $slaReportFeed = SlaEvaluationReportFeed::where('period_id', $period_id)->get();
-        // dd($slaReportFeed);
-        // $slaReportsChecklist = SlaEvaluationReportChecklist::where('period_id', $period_id)->get();
-        // $slaMaster = SlaMasterSla::with('slaAsset')->get();
-        return view('viewdata-slaDetails', compact('slaReports', 'bmBaseAsset', 'slaReportFeed'));
+        $slaReportFeed = SlaEvaluationReportFeed::where('period_id', $period_id)
+            ->whereHas('hrEmployee')
+            ->with(['slaAsset', 'hrEmployee'])->get();
+
+        $groupedByEvaluator = $slaReportFeed->groupBy(function ($item) {
+            return $item->evaluated_by;
+        });
+        
+        return view('viewdata-slaDetails', compact('slaReports', 'bmBaseAsset', 'slaReportFeed' , 'groupedByEvaluator'));
     }
 }
