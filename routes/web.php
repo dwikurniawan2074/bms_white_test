@@ -19,7 +19,7 @@ use App\Http\Controllers\AuthController;
 Route::get('/login', [AuthController::class, 'index'])->name('login');
 Route::post('/authentication', [AuthController::class, 'authentication'])->name('authentication');
 
-Route::get('/dashboard', function () {
+Route::get('/', function () {
     return view('dashboard');
 });
 
