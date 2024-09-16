@@ -15,13 +15,15 @@ use App\Http\Controllers\AuthController;
 |
 */
 
-
-Route::get('/login', [AuthController::class, 'index'])->name('login');
-Route::post('/authentication', [AuthController::class, 'authentication'])->name('authentication');
-
 Route::get('/', function () {
     return view('dashboard');
 });
 
+
+Route::get('/login', [AuthController::class, 'index'])->name('login');
+Route::post('/authentication', [AuthController::class, 'authentication'])->name('authentication');
+
+
+Route::get('/asset', [DataController::class, 'asset'])->name('asset');
 Route::get('/viewdata-sla', [DataController::class, 'index'])->name('viewdata-sla');
 Route::get('/viewdata-slaDetails/{period_id}', [DataController::class, 'details'])->name('viewdata-slaDetails');

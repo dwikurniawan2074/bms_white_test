@@ -30,7 +30,12 @@ class HrEmployee extends Model
         'signature',
     ];
 
-    public function SlaEvaluationReportFeed()
+    public function slaEvaluationReportFeed()
+    {
+        return $this->hasMany(SlaEvaluationReportFeed::class, 'evaluated_by', 'employee_id');
+    }
+    
+    public function SlaEvaluationReportChecklist()
     {
         return $this->hasMany(SlaEvaluationReportFeed::class, 'evaluated_by', 'employee_id');
     }

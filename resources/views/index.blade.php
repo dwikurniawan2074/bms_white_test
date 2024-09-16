@@ -42,7 +42,15 @@
                             </a>
                         </li>
                         <li class="sidebar-item">
-                            <a class="sidebar-link" href="{{ url('/viewdata-sla') }}" aria-expanded="false">
+                            <a class="sidebar-link" href="{{ url('/asset') }}" aria-expanded="false">
+                                <span>
+                                    <i class="ti ti-layout-dashboard"></i>
+                                </span>
+                                <span class="hide-menu">Asset</span>
+                            </a>
+                        </li>
+                        <li class="sidebar-item">
+                            <a class="sidebar-link {{ \Request::is('viewdata-slaDetails*') ? 'active' : '' }}" href="{{ url('/viewdata-sla') }}" aria-expanded="false">
                                 <span>
                                     <i class="ti ti-article"></i>
                                 </span>

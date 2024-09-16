@@ -10,55 +10,44 @@
                                 <h6 class="fw-semibold mb-0">No.</h6>
                             </th>
                             <th>
-                                <h6 class="fw-semibold mb-0">NIP</h6>
+                                <h6 class="fw-semibold mb-0">Asset</h6>
                             </th>
                             <th>
-                                <h6 class="fw-semibold mb-0">Nama</h6>
+                                <h6 class="fw-semibold mb-0">Path</h6>
                             </th>
                             <th>
-                                <h6 class="fw-semibold mb-0">Posisi</h6>
+                                <h6 class="fw-semibold mb-0">Evaluator</h6>
                             </th>
                             <th>
-                                <h6 class="fw-semibold mb-0">Posisi Detail</h6>
+                                <h6 class="fw-semibold mb-0">Level</h6>
                             </th>
                             <th>
-                                <h6 class="fw-semibold mb-0">Tanggal</h6>
-                            </th>
-                            <th>
-                                <h6 class="fw-semibold mb-0">Aktif</h6>
-                            </th>
-                            <th>
-                                <h6 class="fw-semibold mb-0">Actions</h6>
+                                <h6 class="fw-semibold mb-0">Aksi</h6>
                             </th>
                         </tr>
                     </thead>
                     <tbody>  
-                        @foreach ($groupedByEvaluator as $evaluatorId => $reports)
+                        @foreach ($slaReportChecklists as $index => $report)
                             <tr>
                                 <td class="border-bottom-0 px-2">
-                                    <h6 class="fw-semibold mb-0"></h6>
+                                    <h6 class="fw-semibold mb-0">{{ $index + 1 }}</h6>
                                 </td>
                                 <td class="border-bottom-0 px-2">
-                                    <p class="mb-0 fw-normal">{{ $evaluatorId }}</p>
+                                    <p class="mb-0 fw-normal">{{ $report->bmBaseAsset->asset_info }}</p>
                                 </td>
                                 <td class="border-bottom-0 px-2">
-                                    <p class="mb-0 fw-normal">Nama</p>
+                                    <p class="mb-0 fw-normal">{{ $report->evaluation_path }}</p>
                                 </td>
                                 <td class="border-bottom-0 px-2">
-                                    <p class="mb-0 fw-normal"></p> 
+                                    <p class="mb-0 fw-normal">{{ isset($report->hrEmployee->name) ? 
+                                        $report->hrEmployee->name : $report->evaluated_by }}</p> 
                                 </td>
                                 <td class="border-bottom-0 px-2">
-                                    <p class="mb-0 fw-normal">-</p>
-                                </td>
-                                <td class="border-bottom-0 px-2">
-                                    <h6 class="fw-semibold mb-0 fs-4">-</h6>
-                                </td>
-                                <td class="border-bottom-0 px-2">
-                                    <p class="fw-semibold mb-0">Active</p>
+                                    <p class="mb-0 fw-normal">{{ $report->level }}</p>
                                 </td>
                                 <td class="border-bottom-0 px-2">
                                     <div class="d-flex align-items-center gap-2">
-                                        <a href="" class="btn btn-primary fs-2 rounded-3 fw-semibold lh-sm">View</a>
+                                        <a href="" class="btn btn-danger fs-2 rounded-3 fw-semibold lh-sm">View</a>
                                     </div>
                                 </td>
                             </tr>

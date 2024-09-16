@@ -6,7 +6,7 @@
         <div class="card">
             <div class="card-body">
                 <div class="col-md-12">
-                    <h5 class="card-title fw-semibold mb-4">Laporan SLA Periode</h5>
+                    <h5 class="card-title fw-semibold mb-4">{{ $slaReports->report_info }}</h5>
                     <ul class="nav nav-tabs" id="myTab" role="tablist">
                         <li class="nav-item" role="presentation">
                           <button class="nav-link active" id="rekapSla-tab" data-bs-toggle="tab" data-bs-target="#rekapSla" type="button" role="tab" aria-controls="rekapSla" aria-selected="true">Rekap SLA</button>
@@ -24,15 +24,12 @@
                           <button class="nav-link" id="checklist-tab" data-bs-toggle="tab" data-bs-target="#checklist" type="button" role="tab" aria-controls="checklist" aria-selected="false">Checklist</button>
                         </li>
                       </ul>
-
                       <div class="tab-content" id="myTabContent">
-                        
-                            @include('viewdata-tab.viewdata-rekapSla')
-                            @include('viewdata-tab.viewdata-rekapRutin')
-                            @include('viewdata-tab.viewdata-rekapNonRutin')
-                            @include('viewdata-tab.viewdata-paraPihak')
-                            @include('viewdata-tab.viewdata-checklist')
-
+                        @include('viewdata-tab.viewdata-rekapSla')
+                        @include('viewdata-tab.viewdata-rekapRutin')
+                        @include('viewdata-tab.viewdata-rekapNonRutin')
+                        @include('viewdata-tab.viewdata-paraPihak')
+                        @include('viewdata-tab.viewdata-checklist')
                       </div>
                 </div>
             </div>
