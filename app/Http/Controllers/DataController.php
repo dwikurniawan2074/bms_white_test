@@ -40,6 +40,8 @@ class DataController extends Controller
         $groupedByEvaluator = $slaReportFeed->groupBy(function ($item) {
             return $item->evaluated_by;
         });
+
+        // dd($slaReportFeed);
         
         return view('viewdata-slaDetails', compact('slaReports', 'bmBaseAsset', 'slaReportFeed' , 'groupedByEvaluator', 'slaReportChecklists'));
     }
