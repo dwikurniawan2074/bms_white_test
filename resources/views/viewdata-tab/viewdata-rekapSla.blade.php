@@ -47,14 +47,14 @@
         <div class="col-md-4">
             <div class="card">
                 <div class="card-body">
-                    <h6>Jumlah Laporan</h6>
+                    <h6>Jumlah Laporan: <span class="badge bg-danger rounded-3">{{ $slaReports->number_of_report }}</span></h6>
                     <div class="d-flex flex-row">
-                        <h6 class="">Total SLA</h6>
+                        <h6 class="">Total SLA: <span class="badge bg-danger rounded-3">{{ $slaReports->total_sla_value }}</span></h6>
                         {{-- <div class="d-flex align-items-center gap-2">
                             <span class="badge bg-danger rounded-3">Test</span>
                         </div> --}}
                     </div>
-                    <h6>Nilai Akhir SLA</h6>
+                    <h6>Nilai Akhir SLA: <span class="badge bg-danger rounded-3">{{ $slaReports->final_sla_value }} %</span></h6>
                 </div>
             </div>
         </div>

@@ -49,9 +49,8 @@ class DataController extends Controller
                     ->with('bmBaseAsset')
                     ->get();
         
-        $docHistory = RouDocumentTracking::where('doc_type', 'sla_report')
-            ->where('doc_number', $slaReports->id)
-            ->orderBy('id', 'ASC')->get();
+        $documentTracking = new RouDocumentTracking();
+        $docHistory = $documentTracking->getDocTracking($slaReports->id);
         
         // dd($docHistory);
         
