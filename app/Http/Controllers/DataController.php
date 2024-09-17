@@ -7,6 +7,7 @@ use App\Models\BmBaseAsset;
 use App\Models\SlaAssetSla;
 use App\Models\SlaMasterSla;
 use App\Models\SlaEvaluationReportFeed;
+use App\Models\RouDocumentTracking;
 
 use Illuminate\Http\Request;
 
@@ -41,8 +42,20 @@ class DataController extends Controller
             return $item->evaluated_by;
         });
 
-        // dd($slaReportFeed);
+        $allAsset = SlaEvaluationReportChecklist::select('asset_id')
+                    ->distinct()
+                    // ->where('header_', $model->id)
+                    ->where('period_id', $period_id)
+                    ->with('bmBaseAsset')
+                    ->get();
         
-        return view('viewdata-slaDetails', compact('slaReports', 'bmBaseAsset', 'slaReportFeed' , 'groupedByEvaluator', 'slaReportChecklists'));
+        $docHistory = RouDocumentTracking::where('doc_type', 'sla_report')
+            ->where('doc_number', $slaReports->id)
+            ->orderBy('id', 'ASC')->get();
+        
+        // dd($docHistory);
+        
+        return view('viewdata-slaDetails', compact('slaReports', 'bmBaseAsset', 'slaReportFeed', 
+            'groupedByEvaluator', 'slaReportChecklists', 'allAsset', 'docHistory'));
     }
 }

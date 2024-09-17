@@ -30,26 +30,25 @@
                         </tr>
                     </thead>
                     <tbody>  
-                        @foreach ($slaReportChecklists as $index => $report)
+                        @foreach ($docHistory as $index => $history)
                             <tr>
                                 <td class="border-bottom-0 px-2">
                                     <h6 class="fw-semibold mb-0">{{ $index + 1 }}</h6>
                                 </td>
                                 <td class="border-bottom-0 px-2">
-                                    <p class="mb-0 fw-normal">{{ $report->bmBaseAsset->asset_info }}</p>
+                                    <p class="mb-0 fw-normal">{{ $history->status_date }}</p>
                                 </td>
                                 <td class="border-bottom-0 px-2">
-                                    <p class="mb-0 fw-normal">{{ $report->evaluation_path }}</p>
+                                    <p class="mb-0 fw-normal">{{ $history->doc_number }}</p>
                                 </td>
                                 <td class="border-bottom-0 px-2">
-                                    <p class="mb-0 fw-normal">{{ isset($report->hrEmployee->name) ? 
-                                        $report->hrEmployee->name : $report->evaluated_by }}</p> 
+                                    <p class="mb-0 fw-normal">{{ $history->status }}</p> 
                                 </td>
                                 <td class="border-bottom-0 px-2">
-                                    <p class="mb-0 fw-normal">{{ $report->level }}</p>
+                                    <p class="mb-0 fw-normal">{{ $history->notes }}</p>
                                 </td>
                                 <td class="border-bottom-0 px-2">
-                                    <p class="mb-0 fw-normal">{{ $report->level }}</p>
+                                    <p class="mb-0 fw-normal">{{ $history->notes_by }}</p>
                                 </td>
                                 <td class="border-bottom-0 px-2">
                                     <div class="d-flex align-items-center gap-2">

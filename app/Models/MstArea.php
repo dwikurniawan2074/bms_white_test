@@ -11,7 +11,6 @@ class MstArea extends Model
     protected $table = 'mst_area';
 
     protected $fillable = [
-        'id',
         'code',
         'number',
         'area',
@@ -21,6 +20,6 @@ class MstArea extends Model
 
     public function bmBaseAsset()
     {
-        return $this->hasMany(BmBaseAsset::class, 'area_id', 'id');
+        return $this->hasMany(BmBaseAsset::class, 'area_id', 'code');
     }
 }

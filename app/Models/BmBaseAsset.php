@@ -30,9 +30,14 @@ class BmBaseAsset extends Model
         return $this->hasMany(SlaEvaluationReportChecklist::class, 'asset_id', 'id');
     }
 
+    public function reportFeed()
+    {
+        return $this->hasMany(SlaEvaluationReportFeed::class, 'asset_id', 'id');
+    }
+
     public function mstArea()
     {
-        return $this->belongsTo(MstArea::class, 'area_id', 'id');
+        return $this->belongsTo(MstArea::class, 'area_id', 'code');
     }
 
     public function mstOffice()

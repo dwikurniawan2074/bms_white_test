@@ -153,15 +153,19 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($bmBaseAsset as $index => $asset)
+                            @foreach ($allAsset as $index => $asset)
                             <tr>
                                 <td class="border-bottom-0 px-2">
                                     <h6 class="fw-semibold mb-0">{{ $index+1 }}</h6>
                                 </td>
                                 <td class="border-bottom-0 px-2">
-                                    <p class="mb-0 fw-normal">{{ $asset->asset_info }}</p>
+                                    <p class="mb-0 fw-normal">{{ $asset->bmBaseAsset->asset_info }}</p>
                                 </td>
                                 <td class="border-bottom-0 px-2">
+                                    {{-- <p class="mb-0 fw-normal">@foreach($asset->bmBaseAsset->reportFeed as $feed)
+                                        {{ $feed->getTopFeedStatus($slaReports->id, $slaReports->period_id, $asset->asset_id) }}
+                                    @endforeach
+                                    </p> --}}
                                     <p class="mb-0 fw-normal">-</p>
                                 </td>
                                 <td class="border-bottom-0 px-2">

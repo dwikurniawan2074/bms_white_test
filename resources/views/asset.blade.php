@@ -80,13 +80,13 @@
                                             </td>
                                             <td class="border-bottom-0 px-2">
                                                 {{-- @dd($asset->area_id) --}}
-                                                 <p class="mb-0 fw-normal">{{ $asset->area_id }}</p>
+                                                 <p class="mb-0 fw-normal">{{ $asset->mstArea->code ?? '' }} {{ optional($asset->mstArea)->area ?? '-' }}</p>
                                             </td>
                                             <td class="border-bottom-0 px-2">
                                                 <p class="mb-0 fw-normal">{{ $asset->office_id }} {{ optional($asset->mstOffice)->office ?? $asset->office_id }}</p>
                                             </td>                                            
                                             <td class="border-bottom-0 px-2">
-                                                 <p class="mb-0 fw-normal text-center">{{ $asset->evaluation_path }}</p>
+                                                 <p class="mb-0 fw-normal text-center">{{ $asset->evaluation_path == 1 ? 'Via HO LFM' : 'Via SOR' }}</p>
                                             </td>
                                             <td class="border-bottom-0 px-2">
                                                 <div class="d-flex align-items-center gap-2">
