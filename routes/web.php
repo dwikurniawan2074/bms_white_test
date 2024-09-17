@@ -15,13 +15,22 @@ use App\Http\Controllers\AuthController;
 |
 */
 
+// Route::get('/', function () {
+//     return view('dashboard');
+// });
+
 Route::get('/', function () {
+    return view('login');
+});
+
+Route::get('/dashboard', function () {
     return view('dashboard');
 });
 
 
-Route::get('/login', [AuthController::class, 'index'])->name('login');
+// Route::get('/login', [AuthController::class, 'index'])->name('login');
 Route::post('/authentication', [AuthController::class, 'authentication'])->name('authentication');
+Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
 
 Route::get('/asset', [DataController::class, 'asset'])->name('asset');

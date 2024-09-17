@@ -4,8 +4,8 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Modernize Free</title>
-  <link rel="shortcut icon" type="image/png" href="{{ asset('modernize_template/src/assets/images/logos/favicon.png') }}" />
+  <title>Login Page</title>
+  <link rel="shortcut icon" type="image/png" href="{{ asset('pgn_logo_only.png') }}" />
   <link rel="stylesheet" href="{{ asset('modernize_template/src/assets/css/styles.min.css') }}" />
   <style>
     #navbar-collapse {
@@ -25,20 +25,26 @@
           <div class="col-md-8 col-lg-6 col-xxl-3">
             <div class="card mb-0">
               <div class="card-body">
-                <a href="./index.html" class="text-nowrap logo-img text-center d-block py-3 w-100">
+                <a href="{{ url('/') }}" class="text-nowrap logo-img text-center d-block py-3 w-100">
                   <img src="{{ asset('logo_pgn-removebg.png') }}" width="180" alt="">
                 </a>
                 {{-- <p class="text-center">Login Page</p> --}}
-                <form>
+                @if($errors->has('login'))
+                    <div class="alert alert-danger">
+                        {{ $errors->first('login') }}
+                    </div>
+                @endif
+                <form action="{{ route('authentication') }}" method="POST">
+                  @csrf
                   <div class="mb-3">
-                    <label for="exampleInputEmail1" class="form-label">Username</label>
-                    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                    <label for="username" class="form-label">Username</label>
+                    <input type="text" class="form-control" id="username" name="username" aria-describedby="usernameHelp" required>
                   </div>
                   <div class="mb-4">
-                    <label for="exampleInputPassword1" class="form-label">Password</label>
-                    <input type="password" class="form-control" id="exampleInputPassword1">
+                    <label for="password" class="form-label">Password</label>
+                    <input type="password" class="form-control" id="password" name="password" required>
                   </div>
-                  <a href="{{ url('/') }}" class="btn btn-primary w-100 py-8 fs-4 mb-4 rounded-2">Sign In</a>
+                  <button type="submit" class="btn btn-primary w-100 py-8 fs-4 mb-4 rounded-2">Sign In</button>
                 </form>
               </div>
             </div>

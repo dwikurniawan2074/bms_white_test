@@ -18,7 +18,7 @@
 @endsection
 
 @section('main-content')
-<div class="container-fluid">
+<div class="container-fluid" style="max-width: fit-content;">
     <div class="container-fluid">
         <div class="card">
             <div class="card-body">

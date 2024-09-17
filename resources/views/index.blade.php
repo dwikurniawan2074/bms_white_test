@@ -19,7 +19,7 @@
             <!-- Sidebar scroll-->
             <div>
                 <div class="brand-logo d-flex align-items-center justify-content-between">
-                    <a href="{{ url('/') }}" class="text-nowrap logo-img">
+                    <a href="{{ url('/dashboard') }}" class="text-nowrap logo-img">
                         <img src="{{ asset('logo_pgn-removebg.png') }}" width="180" alt="" />
                     </a>
                     <div class="close-btn d-xl-none d-block sidebartoggler cursor-pointer" id="sidebarCollapse">
@@ -34,7 +34,7 @@
                             <span class="hide-menu">Sidebar Menu</span>
                         </li>
                         <li class="sidebar-item">
-                            <a class="sidebar-link" href="{{ url('/') }}" aria-expanded="false">
+                            <a class="sidebar-link" href="{{ url('/dashboard') }}" aria-expanded="false">
                                 <span>
                                     <i class="ti ti-layout-dashboard"></i>
                                 </span>
@@ -182,9 +182,13 @@
                                 <div class="dropdown-menu dropdown-menu-end dropdown-menu-animate-up"
                                     aria-labelledby="drop2">
                                     <div class="message-body">
-                                        <a href="{{ url('/login') }}"
-                                            class="btn btn-outline-primary mx-3 mt-2 d-block">
-                                            <i class="ti ti-login"></i>Logout</a>
+                                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                            @csrf
+                                        </form>
+                                        <a href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();"
+                                        class="btn btn-outline-primary mx-3 mt-2 d-block">
+                                        <i class="ti ti-login"></i>Logout
+                                        </a>
                                     </div>
                                 </div>
                             </li>
