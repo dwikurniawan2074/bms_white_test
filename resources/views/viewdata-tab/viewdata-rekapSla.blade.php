@@ -68,13 +68,13 @@
                     <table class="table table-striped table-bordered text-nowrap mb-0 align-middle">
                         <thead class="text-dark fs-4">
                             <tr>
-                                <th rowspan="2">
+                                <th rowspan="2" class="centered">
                                     <h6 class="fw-semibold mb-0">No.</h6>
                                 </th>
-                                <th rowspan="2">
+                                <th rowspan="2" class="centered">
                                     <h6 class="fw-semibold mb-0">Asset</h6>
                                 </th>
-                                <th rowspan="2">
+                                <th rowspan="2" class="centered">
                                     <h6 class="fw-semibold mb-0">Status</h6>
                                 </th>
                                 <th colspan="2">
@@ -153,11 +153,17 @@
                             </tr>
                         </thead>
                         <tbody>
+                            @php
+                                use App\Models\SlaEvaluationReportFeed;
+                                use Illuminate\Support\Facades\DB;
+                            @endphp
                             @foreach ($allAsset as $index => $asset)
-                            {{-- @php($items = $feed_id = $asset->slaReport->slaReportFeed)
-                            @foreach ($items as $item)
-                                @dd($items->getTopFeedId($asset->asset_id))
-                            @endforeach --}}
+                            @php
+                                // Retrieve the top feed ID and feed model
+                                $feedModel = new SlaEvaluationReportFeed();
+                                $feed_id = $feedModel->getTopFeedId($asset->asset_id);
+                                $feed_model = $feed_id ? $feedModel->find($feed_id) : null;
+                            @endphp
                             <tr>
                                 <td class="border-bottom-0 px-2">
                                     <h6 class="fw-semibold mb-0">{{ $index+1 }}</h6>
@@ -165,42 +171,54 @@
                                 <td class="border-bottom-0 px-2">
                                     <p class="mb-0 fw-normal">{{ $asset->bmBaseAsset->asset_info }}</p>
                                 </td>
-                                <td class="border-bottom-0 px-2">
-                                    {{-- <p class="mb-0 fw-normal">@foreach($asset->bmBaseAsset->reportFeed as $feed)
-                                        {{ $feed->getTopFeedStatus($slaReports->id, $slaReports->period_id, $asset->asset_id) }}
-                                    @endforeach
-                                    </p> --}}
-                                    <p class="mb-0 fw-normal">-</p>
+                                <td class="border-bottom-0 px-2 text-center">
+                                    <span class="badge bg-success rounded-3">
+                                        {{ $feedModel->getTopFeedStatus($slaReports->id, $slaReports->period_id, $asset->asset_id) }}
+                                    </span>
                                 </td>
-                                <td class="border-bottom-0 px-2">
-                                    <p class="mb-0 fw-normal">-</p>
-                                </td>
-                                <td class="border-bottom-0 px-2">
-                                    <p class="mb-0 fw-normal">-</p>
-                                </td>
-                                <td class="border-bottom-0 px-2">
-                                    <p class="mb-0 fw-normal">-</p>
-                                </td>
-                                <td class="border-bottom-0 px-2">
-                                    <p class="mb-0 fw-normal">-</p>
-                                </td>
-                                <td class="border-bottom-0 px-2">
-                                    <p class="mb-0 fw-normal">-</p>
-                                </td>
-                                <td class="border-bottom-0 px-2">
-                                    <p class="mb-0 fw-normal">-</p>
-                                </td>
-                                <td class="border-bottom-0 px-2">
-                                    <p class="mb-0 fw-normal">-</p>
-                                </td>
-                                <td class="border-bottom-0 px-2">
-                                    <p class="mb-0 fw-normal">-</p>
-                                </td>
-                                <td class="border-bottom-0 px-2">
-                                </td>
-                                <td class="border-bottom-0 px-2">
-                                    <h6 class="fw-semibold mb-0 fs-4">-</h6>
-                                </td>
+                        
+                                @if ($feed_id > 0 && $feed_model)
+                                    @php
+                                        // Perform the necessary raw SQL queries to get the values
+                                        $total_suit_1 = DB::table('sla_evaluation_report_feed_detail')
+                                            ->where('header_', $feed_model->id)
+                                            ->where('suit_val', 1)
+                                            ->count();
+                        
+                                        $total_suit_2 = DB::table('sla_evaluation_report_feed_detail')
+                                            ->where('header_', $feed_model->id)
+                                            ->where('suit_val', 2)
+                                            ->count();
+                        
+                                        $total_suit_3 = DB::table('sla_evaluation_report_feed_detail')
+                                            ->where('header_', $feed_model->id)
+                                            ->where('suit_val', 3)
+                                            ->count();
+                        
+                                        $total_suit = DB::table('sla_evaluation_report_feed_detail')
+                                            ->where('header_', $feed_model->id)
+                                            ->where('avail_val', 1)
+                                            ->sum('suit_val');
+                                    @endphp
+                        
+                                    <!-- Outputting the results as table cells -->
+                                    <td class="border-bottom-0 px-2 text-center fw-bold">{{ $feed_model->avail_val }}</td>
+                                    <td class="border-bottom-0 px-2 text-center fw-bold">{{ $feed_model->not_avail_val }}</td>
+                                    <td class="border-bottom-0 px-2 text-center fw-bold">{{ $feed_model->implemen_val }}</td>
+                                    <td class="border-bottom-0 px-2 text-center fw-bold">
+                                        {{ ($feed_model->avail_val + $feed_model->not_avail_val) - $feed_model->implemen_val }}
+                                    </td>
+                                    <td class="border-bottom-0 px-2 text-center fw-bold">{{ $total_suit_1 }}</td>
+                                    <td class="border-bottom-0 px-2 text-center fw-bold">{{ $total_suit_2 }}</td>
+                                    <td class="border-bottom-0 px-2 text-center fw-bold">{{ $total_suit_3 }}</td>
+                                    <td class="border-bottom-0 px-2 text-center fw-bold">{{ $total_suit }}</td>
+                                    <td class="border-bottom-0 px-2 text-center fw-bold">{{ $feed_model->sla_max_val }}</td>
+                                    <td class="border-bottom-0 px-2 text-center fw-bold">{{ $feed_model->sla_value }}</td>
+                        
+                                @else
+                                    <!-- Empty row if no feed_model found -->
+                                    <td colspan="9"></td>
+                                @endif
                                 <td class="border-bottom-0 px-2">
                                     <div class="d-flex align-items-center gap-2">
                                         <a href="" class="btn btn-primary fs-2 rounded-3 fw-semibold lh-sm">Details</a>
@@ -209,6 +227,7 @@
                             </tr>
                             @endforeach
                         </tbody>
+                        
                     </table>
                 </div>
             </div>

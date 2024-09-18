@@ -15,11 +15,19 @@ class SlaReportController extends Controller
     {
         $data = SlaEvaluationReport::all();
 
-        return response()->json([
-            'status' => true,
-            'message' => 'Data is founded',
-            'data' => $data
-        ], 200);
+        if($data){
+            return response()->json([
+                'status' => true,
+                'message' => 'Data is founded',
+                'data' => $data
+            ], 200);
+        }else{
+            return response()->json([
+                'status' => false,
+                'message' => 'Data not found'
+            ]);
+        }
+        
     }
 
     /**
@@ -35,7 +43,21 @@ class SlaReportController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $data = SlaEvaluationReport::find($id);
+        dd($data);
+
+        if($data){
+            return response()->json([
+                'status' => true,
+                'message' => 'Data is founded',
+                'data' => $data
+            ], 200);
+        }else{
+            return response()->json([
+                'status' => false,
+                'message' => 'Data not found'
+            ]);
+        }
     }
 
     /**

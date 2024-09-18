@@ -1,5 +1,14 @@
 @extends('index')
 
+@section('header-script')
+<style>
+      .centered {
+        text-align: center;
+        vertical-align: middle;
+    }
+</style>
+@endsection
+
 @section('main-content')
 <div class="container-fluid" style="max-width: 1320px;">
     <div class="container-fluid">

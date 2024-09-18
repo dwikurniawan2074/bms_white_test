@@ -36,6 +36,11 @@ class SlaEvaluationReportFeed extends Model
     {
         return $this->belongsTo(SlaEvaluationReport::class, 'period_id', 'period_id');
     } 
+
+    public function feedDetails()
+    {
+        return $this->hasMany(SlaEvaluationReportFeedDetail::class, 'header_', 'id');
+    }
     
     public function slaAsset()
     {
@@ -56,15 +61,15 @@ class SlaEvaluationReportFeed extends Model
         $assetPath = BmBaseAsset::find($assetId);
 
         if ($level == 4 && $assetPath->evaluation_path == 1) {
-            return '<span class="badge badge-success">Division Head LFM</span>';
+            return 'Division Head LFM';
         } elseif ($level == 4 && $assetPath->evaluation_path == 2) {
-            return '<span class="badge badge-success">SOR</span>';
+            return 'SOR';
         } elseif ($level == 2) {
-            return '<span class="badge badge-success">LFM Counterpart</span>';
+            return 'LFM Counterpart';
         } elseif ($level == 1) {
-            return '<span class="badge badge-success">Korar</span>';
+            return 'Korar';
         } else {
-            return '<span class="badge badge">Kosong</span>';
+            return 'Kosong';
         }
     }
 

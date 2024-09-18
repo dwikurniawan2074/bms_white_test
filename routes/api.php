@@ -23,3 +23,4 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::get('asset', [AssetController::class, 'index']); 
 Route::get('slaReport', [SlaReportController::class, 'index']); 
+Route::get('slaReport/{id}', [SlaReportController::class, 'show']); 
