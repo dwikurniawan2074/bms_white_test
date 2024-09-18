@@ -50,10 +50,7 @@
                     <h6>Jumlah Laporan: <span class="badge bg-danger rounded-3">{{ $slaReports->number_of_report }}</span></h6>
                     <div class="d-flex flex-row">
                         <h6 class="">Total SLA: <span class="badge bg-danger rounded-3">{{ $slaReports->total_sla_value }}</span></h6>
-                        {{-- <div class="d-flex align-items-center gap-2">
-                            <span class="badge bg-danger rounded-3">Test</span>
-                        </div> --}}
-                    </div>
+                        </div>
                     <h6>Nilai Akhir SLA: <span class="badge bg-danger rounded-3">{{ $slaReports->final_sla_value }} %</span></h6>
                 </div>
             </div>
@@ -155,11 +152,11 @@
                         <tbody>
                             @php
                                 use App\Models\SlaEvaluationReportFeed;
+                                use App\Models\SlaEvaluationReportFeedDetail;
                                 use Illuminate\Support\Facades\DB;
                             @endphp
                             @foreach ($allAsset as $index => $asset)
                             @php
-                                // Retrieve the top feed ID and feed model
                                 $feedModel = new SlaEvaluationReportFeed();
                                 $feed_id = $feedModel->getTopFeedId($asset->asset_id);
                                 $feed_model = $feed_id ? $feedModel->find($feed_id) : null;
@@ -179,29 +176,23 @@
                         
                                 @if ($feed_id > 0 && $feed_model)
                                     @php
-                                        // Perform the necessary raw SQL queries to get the values
-                                        $total_suit_1 = DB::table('sla_evaluation_report_feed_detail')
-                                            ->where('header_', $feed_model->id)
+                                        $total_suit_1 = SlaEvaluationReportFeedDetail::where('header_', $feed_model->id)
                                             ->where('suit_val', 1)
                                             ->count();
                         
-                                        $total_suit_2 = DB::table('sla_evaluation_report_feed_detail')
-                                            ->where('header_', $feed_model->id)
+                                        $total_suit_2 = SlaEvaluationReportFeedDetail::where('header_', $feed_model->id)
                                             ->where('suit_val', 2)
                                             ->count();
                         
-                                        $total_suit_3 = DB::table('sla_evaluation_report_feed_detail')
-                                            ->where('header_', $feed_model->id)
+                                        $total_suit_3 = SlaEvaluationReportFeedDetail::where('header_', $feed_model->id)
                                             ->where('suit_val', 3)
                                             ->count();
                         
-                                        $total_suit = DB::table('sla_evaluation_report_feed_detail')
-                                            ->where('header_', $feed_model->id)
+                                        $total_suit = SlaEvaluationReportFeedDetail::where('header_', $feed_model->id)
                                             ->where('avail_val', 1)
                                             ->sum('suit_val');
                                     @endphp
                         
-                                    <!-- Outputting the results as table cells -->
                                     <td class="border-bottom-0 px-2 text-center fw-bold">{{ $feed_model->avail_val }}</td>
                                     <td class="border-bottom-0 px-2 text-center fw-bold">{{ $feed_model->not_avail_val }}</td>
                                     <td class="border-bottom-0 px-2 text-center fw-bold">{{ $feed_model->implemen_val }}</td>
@@ -216,7 +207,6 @@
                                     <td class="border-bottom-0 px-2 text-center fw-bold">{{ $feed_model->sla_value }}</td>
                         
                                 @else
-                                    <!-- Empty row if no feed_model found -->
                                     <td colspan="9"></td>
                                 @endif
                                 <td class="border-bottom-0 px-2">

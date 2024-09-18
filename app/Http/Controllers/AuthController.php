@@ -38,7 +38,6 @@ class AuthController extends Controller
         
 
         if ($user && $user->validatePassword($password)) {
-            Auth::login($user);
             return redirect()->intended('/dashboard');
         }
 
