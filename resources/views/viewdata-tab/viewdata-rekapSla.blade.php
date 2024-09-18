@@ -154,6 +154,10 @@
                         </thead>
                         <tbody>
                             @foreach ($allAsset as $index => $asset)
+                            {{-- @php($items = $feed_id = $asset->slaReport->slaReportFeed)
+                            @foreach ($items as $item)
+                                @dd($items->getTopFeedId($asset->asset_id))
+                            @endforeach --}}
                             <tr>
                                 <td class="border-bottom-0 px-2">
                                     <h6 class="fw-semibold mb-0">{{ $index+1 }}</h6>

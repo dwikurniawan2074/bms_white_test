@@ -36,14 +36,14 @@
                                     <p class="mb-0 fw-normal">{{ $report->bmBaseAsset->asset_info }}</p>
                                 </td>
                                 <td class="border-bottom-0 px-2">
-                                    <p class="mb-0 fw-normal">{{ $report->evaluation_path }}</p>
+                                    <p class="mb-0 fw-normal">{{ $report->evaluation_path == 1 ? 'Via HO LFM' : 'Via SOR' }}</p>
                                 </td>
                                 <td class="border-bottom-0 px-2">
                                     <p class="mb-0 fw-normal">{{ isset($report->hrEmployee->name) ? 
                                         $report->hrEmployee->name : $report->evaluated_by }}</p> 
                                 </td>
                                 <td class="border-bottom-0 px-2">
-                                    <p class="mb-0 fw-normal">{{ $report->level }}</p>
+                                    <p class="mb-0 fw-normal">{{ $report->level == 1 ? 'Korar' : ($report->level == 2 ? 'LFM Counterpart' : ($report->level == 3 ? '-' : 'Dept Head / SOR')) }}</p>
                                 </td>
                                 <td class="border-bottom-0 px-2">
                                     <div class="d-flex align-items-center gap-2">

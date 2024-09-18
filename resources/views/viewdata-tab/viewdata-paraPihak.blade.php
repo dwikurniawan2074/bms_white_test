@@ -34,6 +34,7 @@
                     </thead>
                     <tbody>  
                         @foreach ($groupedByEvaluator as $evaluatorId => $reports)
+                        {{-- @dd($reports) --}}
                             <tr>
                                 <td class="border-bottom-0 px-2">
                                     <h6 class="fw-semibold mb-0"></h6>
@@ -51,10 +52,10 @@
                                     <p class="mb-0 fw-normal">-</p>
                                 </td>
                                 <td class="border-bottom-0 px-2">
-                                    <h6 class="fw-semibold mb-0 fs-4">-</h6>
+                                    <h6 class="fw-semibold mb-0 fs-4"></h6>
                                 </td>
                                 <td class="border-bottom-0 px-2">
-                                    <p class="fw-semibold mb-0">Active</p>
+                                    <p class="fw-semibold mb-0"></p>
                                 </td>
                                 <td class="border-bottom-0 px-2">
                                     <div class="d-flex align-items-center gap-2">

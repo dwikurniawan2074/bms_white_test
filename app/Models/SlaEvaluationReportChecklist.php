@@ -20,6 +20,11 @@ class SlaEvaluationReportChecklist extends Model
         'status',
     ];
 
+    public function slaReport()
+    {
+        return $this->belongsTo(SlaEvaluationReport::class, 'asset_id', 'id');
+    }
+
     public function bmBaseAsset()
     {
         return $this->belongsTo(BmBaseAsset::class, 'asset_id', 'id');

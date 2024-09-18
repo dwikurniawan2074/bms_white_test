@@ -53,6 +53,6 @@ class SlaEvaluationReport extends Model
 
     public function slaReportFeed()
     {
-        return $this->hasMany(SlaEvaluationReportProcess::class, 'period_id', 'period_id');
+        return $this->hasMany(SlaEvaluationReportFeed::class, 'period_id', 'period_id');
     }
 }

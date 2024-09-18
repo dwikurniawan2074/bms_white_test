@@ -1,7 +1,7 @@
 @extends('index')
 
 @section('main-content')
-<div class="container-fluid" style="max-width: fit-content;">
+<div class="container-fluid" style="max-width: 1320px;">
     <div class="container-fluid">
         <div class="card">
             <div class="card-body">
@@ -20,18 +20,18 @@
                         <li class="nav-item" role="presentation">
                           <button class="nav-link" id="paraPihak-tab" data-bs-toggle="tab" data-bs-target="#paraPihak" type="button" role="tab" aria-controls="paraPihak" aria-selected="false">Para Pihak</button>
                         </li>
-                        <li class="nav-item" role="presentation">
+                        {{-- <li class="nav-item" role="presentation">
                           <button class="nav-link" id="beritaAcara-tab" data-bs-toggle="tab" data-bs-target="#beritaAcara" type="button" role="tab" aria-controls="beritaAcara" aria-selected="false">Berita Acara</button>
-                        </li>
-                        <li class="nav-item" role="presentation">
+                        </li> --}}
+                        {{-- <li class="nav-item" role="presentation">
                           <button class="nav-link" id="timeline-tab" data-bs-toggle="tab" data-bs-target="#timeline" type="button" role="tab" aria-controls="timeline" aria-selected="false">Timeline</button>
-                        </li>
+                        </li> --}}
                         <li class="nav-item" role="presentation">
                           <button class="nav-link" id="checklist-tab" data-bs-toggle="tab" data-bs-target="#checklist" type="button" role="tab" aria-controls="checklist" aria-selected="false">Checklist</button>
                         </li>
-                        <li class="nav-item" role="presentation">
+                        {{-- <li class="nav-item" role="presentation">
                           <button class="nav-link" id="lampiran-tab" data-bs-toggle="tab" data-bs-target="#lampiran" type="button" role="tab" aria-controls="lampiran" aria-selected="false">Lampiran</button>
-                        </li>
+                        </li> --}}
                         <li class="nav-item" role="presentation">
                           <button class="nav-link" id="history-tab" data-bs-toggle="tab" data-bs-target="#history" type="button" role="tab" aria-controls="history" aria-selected="false">History</button>
                         </li>

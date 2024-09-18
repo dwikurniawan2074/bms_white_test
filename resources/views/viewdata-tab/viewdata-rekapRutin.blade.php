@@ -27,7 +27,8 @@
                         </tr>
                     </thead>
                     <tbody>  
-                        @foreach ($slaReportFeed as $index => $feed)                                
+                        @foreach ($allFeed as $index => $feed)   
+                        {{-- @dd($feed) --}}
                         <tr>
                             <td class="border-bottom-0 px-2">
                                 <h6 class="fw-semibold mb-0">{{ $index + 1 }}</h6>
@@ -36,15 +37,15 @@
                                 <p class="mb-0 fw-normal">{{ $feed->slaAsset->asset_info }}</p>
                             </td>
                             <td class="border-bottom-0 px-2">
-                                <p class="mb-0 fw-normal">{{ $feed->evaluated_by }}</p>
+                                <p class="mb-0 fw-normal">{{ $feed->created_by }}</p>
                             </td>
                             <td class="border-bottom-0 px-2">
                                 <div class="d-flex align-items-center gap-2">
-                                    <span class="badge bg-primary rounded-3">Draft</span>
+                                    <span class="badge bg-success rounded-3">{{ $feed->getLabel($feed->id) }}</span>
                                 </div>
                             </td>
                             <td class="border-bottom-0 px-2">
-                                <h6 class="fw-semibold mb-0 fs-4">100</h6>
+                                <h6 class="fw-semibold mb-0 fs-4">{{ $feed->sla_value }}</h6>
                             </td>
                             <td class="border-bottom-0 px-2">
                                 <div class="d-flex align-items-center gap-2">

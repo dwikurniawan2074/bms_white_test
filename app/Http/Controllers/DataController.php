@@ -43,18 +43,25 @@ class DataController extends Controller
         });
 
         $allAsset = SlaEvaluationReportChecklist::select('asset_id')
-                    ->distinct()
-                    // ->where('header_', $model->id)
-                    ->where('period_id', $period_id)
-                    ->with('bmBaseAsset')
-                    ->get();
+            ->distinct()
+            // ->where('header_', $model->id)
+            ->where('period_id', $period_id)
+            ->with('bmBaseAsset')
+            ->get();
         
-        $documentTracking = new RouDocumentTracking();
-        $docHistory = $documentTracking->getDocTracking($slaReports->id);
+        $rouDocumentModel = new RouDocumentTracking();
+        $docHistory = $rouDocumentModel->getDocTracking($slaReports->id);
+
+        $feedModel = new SlaEvaluationReportFeed();
+        $allFeed = $feedModel->getAllFeedByLevel($slaReports->id, $period_id, 1);
+        // dd($allFeed);
+
+        // $feedReport = new SlaEvaluationReportFeed();
+        // $feed_id = $feedReport->getTopFeedId($slaReports->id)
         
         // dd($docHistory);
         
         return view('viewdata-slaDetails', compact('slaReports', 'bmBaseAsset', 'slaReportFeed', 
-            'groupedByEvaluator', 'slaReportChecklists', 'allAsset', 'docHistory'));
+            'groupedByEvaluator', 'slaReportChecklists', 'allAsset', 'allFeed', 'docHistory'));
     }
 }
